@@ -1,0 +1,11 @@
+{
+  "name": "dreamweever",
+  "version": "0.1.0",
+  "description": "A frictionless dream journal — capture a dream in two actions.",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "test": "node --test",
+    "start": "npx serve ."
+  }
+}

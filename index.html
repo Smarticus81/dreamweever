@@ -1,0 +1,95 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="color-scheme" content="dark light" />
+  <title>Dreamweever</title>
+  <link rel="stylesheet" href="css/styles.css" />
+</head>
+<body>
+  <div class="app">
+    <header class="app-header">
+      <h1>Dreamweever</h1>
+      <div class="header-actions">
+        <button type="button" id="export-btn" class="btn btn-ghost" title="Download all dreams as JSON">Export</button>
+      </div>
+    </header>
+
+    <div id="storage-banner" class="banner" hidden role="alert">
+      Storage is unavailable — dreams from this session won’t survive a reload.
+      Export before you leave.
+    </div>
+
+    <main>
+      <section class="composer" aria-label="New dream">
+        <div id="composer-mode" class="composer-mode" hidden>
+          Editing dream — <kbd>Esc</kbd> to cancel
+        </div>
+        <div id="draft-notice" class="draft-notice" hidden>Unsaved draft restored.</div>
+        <label class="visually-hidden" for="dream-text">Describe your dream. Use #tags inline. The first line becomes the title.</label>
+        <textarea
+          id="dream-text"
+          rows="4"
+          placeholder="What did you dream? First line becomes the title. Tag inline, like #flying #recurring…"
+          autofocus
+        ></textarea>
+        <div class="composer-footer">
+          <span id="composer-error" class="field-error" role="status"></span>
+          <span class="hint"><kbd>Ctrl</kbd>+<kbd>Enter</kbd> to save</span>
+          <button type="button" id="cancel-edit-btn" class="btn btn-ghost" hidden>Cancel</button>
+          <button type="button" id="save-btn" class="btn btn-primary">Save dream</button>
+        </div>
+      </section>
+
+      <section class="journal" aria-label="Your dreams">
+        <div class="search-row">
+          <label class="visually-hidden" for="search">Search dreams</label>
+          <input
+            type="search"
+            id="search"
+            placeholder="Search dreams… ( / )"
+            autocomplete="off"
+          />
+        </div>
+        <div id="tag-bar" class="tag-bar" aria-label="Filter by tag"></div>
+
+        <div id="empty-state" class="empty-state" hidden>
+          <p>No dreams yet.</p>
+          <p class="muted">Your journal lives only on this device. Start typing above — the first line becomes the title, and <code>#tags</code> work inline.</p>
+        </div>
+
+        <div id="no-results" class="empty-state" hidden>
+          <p id="no-results-text">No dreams match your search.</p>
+          <button type="button" id="clear-search-btn" class="btn btn-ghost">Clear search</button>
+        </div>
+
+        <ol id="entries" class="entries" reversed></ol>
+      </section>
+    </main>
+  </div>
+
+  <div id="toast-region" class="toast-region" aria-live="polite"></div>
+
+  <template id="entry-template">
+    <li class="entry">
+      <article>
+        <header class="entry-header">
+          <h2 class="entry-title"></h2>
+          <time class="entry-date"></time>
+        </header>
+        <p class="entry-text"></p>
+        <footer class="entry-footer">
+          <span class="entry-tags"></span>
+          <span class="entry-actions">
+            <button type="button" class="btn btn-ghost btn-sm" data-action="edit">Edit</button>
+            <button type="button" class="btn btn-ghost btn-sm" data-action="delete">Delete</button>
+          </span>
+        </footer>
+      </article>
+    </li>
+  </template>
+
+  <script type="module" src="js/app.js"></script>
+</body>
+</html>

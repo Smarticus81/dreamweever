@@ -1,0 +1,139 @@
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap');
+@import "tailwindcss";
+@import "tw-animate-css";
+@plugin "@tailwindcss/typography";
+
+@custom-variant dark (&:is(.dark *));
+
+@theme inline {
+  --color-background: hsl(var(--background));
+  --color-foreground: hsl(var(--foreground));
+  --color-border: hsl(var(--border));
+  --color-input: hsl(var(--input));
+  --color-ring: hsl(var(--ring));
+  --color-card: hsl(var(--card));
+  --color-card-foreground: hsl(var(--card-foreground));
+  --color-card-border: hsl(var(--card-border));
+  --color-popover: hsl(var(--popover));
+  --color-popover-foreground: hsl(var(--popover-foreground));
+  --color-popover-border: hsl(var(--popover-border));
+  --color-primary: hsl(var(--primary));
+  --color-primary-foreground: hsl(var(--primary-foreground));
+  --color-secondary: hsl(var(--secondary));
+  --color-secondary-foreground: hsl(var(--secondary-foreground));
+  --color-muted: hsl(var(--muted));
+  --color-muted-foreground: hsl(var(--muted-foreground));
+  --color-accent: hsl(var(--accent));
+  --color-accent-foreground: hsl(var(--accent-foreground));
+  --color-destructive: hsl(var(--destructive));
+  --color-destructive-foreground: hsl(var(--destructive-foreground));
+  --color-gold: hsl(var(--gold));
+  --color-gold-foreground: hsl(var(--gold-foreground));
+  --color-gold-hover: hsl(var(--gold-hover));
+  --font-sans: var(--font-sans);
+  --font-serif: var(--font-serif);
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+}
+
+:root {
+  /* Glimpse — premium white + antique gold */
+  --background: 0 0% 100%;
+  --foreground: 0 0% 7%;
+  --card: 0 0% 100%;
+  --card-foreground: 0 0% 7%;
+  --popover: 0 0% 100%;
+  --popover-foreground: 0 0% 7%;
+  --primary: 0 0% 7%;
+  --primary-foreground: 0 0% 100%;
+  --secondary: 40 33% 97%;
+  --secondary-foreground: 0 0% 7%;
+  --muted: 40 14% 96%;
+  --muted-foreground: 220 6% 42%;
+  --accent: 40 38% 95%;
+  --accent-foreground: 0 0% 7%;
+  --destructive: 350 74% 48%;
+  --destructive-foreground: 0 0% 100%;
+  --border: 40 16% 90%;
+  --input: 40 16% 90%;
+  --ring: 39 42% 59%;
+  --radius: 0.75rem;
+
+  /* Antique gold accent */
+  --gold: 39 42% 59%;
+  --gold-hover: 39 36% 52%;
+  --gold-foreground: 0 0% 100%;
+
+  --font-serif: 'Playfair Display', Georgia, serif;
+  --font-sans: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, "SF Pro Display", system-ui, sans-serif;
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply antialiased bg-background text-foreground;
+    font-family: var(--font-sans);
+  }
+
+  h1, h2, h3 {
+    font-family: var(--font-sans);
+    font-weight: 700;
+    letter-spacing: -0.02em;
+  }
+
+  .font-playfair, .serif {
+    font-family: var(--font-serif);
+  }
+}
+
+@layer utilities {
+  .text-gold {
+    color: hsl(var(--gold));
+  }
+
+  .bg-gold {
+    background-color: hsl(var(--gold));
+  }
+
+  .bg-gold:hover {
+    background-color: hsl(var(--gold-hover));
+  }
+
+  .border-gold {
+    border-color: hsl(var(--gold));
+  }
+
+  .glimpse-divider {
+    @apply flex items-center gap-4 w-full max-w-xs mx-auto;
+  }
+
+  .glimpse-divider::before,
+  .glimpse-divider::after {
+    content: "";
+    @apply flex-1 h-px bg-border;
+  }
+
+  .glimpse-card {
+    @apply bg-card border border-border rounded-2xl shadow-sm;
+  }
+
+  .glimpse-gold-ring {
+    box-shadow: 0 0 0 1px hsl(var(--gold) / 0.25);
+  }
+
+  .animate-fade-in-up {
+    animation: glimpseFadeInUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    opacity: 0;
+    transform: translateY(20px);
+  }
+
+  @keyframes glimpseFadeInUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+}
